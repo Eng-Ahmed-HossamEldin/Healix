@@ -1,0 +1,44 @@
+# Dependencies
+node_modules/
+package-lock.json
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# Build outputs
+dist/
+build/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Logs
+*.log
+npm-debug.log*
+
+# Flutter
+healix_mobile/healix_app-master/.dart_tool/
+healix_mobile/healix_app-master/build/
+healix_mobile/healix_app-master/.flutter-plugins
+healix_mobile/healix_app-master/.flutter-plugins-dependencies
+healix_mobile/healix_app-master/.packages
+healix_mobile/healix_app-master/pubspec.lock
+
+# Electron
+healix_front_desktop/dist/
+
+# Uploads
+diet-backend/uploads/
+
+# PDF outputs
+docs/diagram-pdfs/*.pdf

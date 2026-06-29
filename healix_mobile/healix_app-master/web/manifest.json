@@ -1,0 +1,18 @@
+{
+  "name": "Healix",
+  "short_name": "Healix",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#0E5678",
+  "description": "A Flutter health and wellness tracking app.",
+  "orientation": "portrait-primary",
+  "prefer_related_applications": false,
+  "icons": [
+    {
+      "src": "favicon.png",
+      "sizes": "32x32",
+      "type": "image/png"
+    }
+  ]
+}

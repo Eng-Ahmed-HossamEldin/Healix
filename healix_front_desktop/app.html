@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Healix — Dashboard</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body>
+<div id="toast"></div>
+
+<div class="app-shell">
+  <!-- SIDEBAR -->
+  <nav class="sidebar" id="sidebar">
+    <div class="sidebar-logo">
+      <div class="logo-icon logo-icon-image"><img src="logo.jpeg" alt="Healix logo" /></div>
+      <div class="brand-lockup">
+        <span class="logo-text">Healix</span>
+        <span class="brand-subtitle">Member app</span>
+      </div>
+    </div>
+    <div class="sidebar-nav">
+      <div class="nav-section">Main</div>
+      <div class="nav-item active" data-page="dashboard"><i class="fas fa-home"></i><span class="nav-label">Dashboard</span></div>
+      <div class="nav-item" data-page="goals"><i class="fas fa-bullseye"></i><span class="nav-label">Goal Setting</span></div>
+      <div class="nav-item" data-page="progress"><i class="fas fa-chart-line"></i><span class="nav-label">Progress</span></div>
+
+      <div class="nav-section">Nutrition</div>
+      <div class="nav-item" data-page="calories"><i class="fas fa-fire"></i><span class="nav-label">Calories &amp; Macros</span></div>
+      <div class="nav-item" data-page="foodlog"><i class="fas fa-utensils"></i><span class="nav-label">Food Logging</span></div>
+      <div class="nav-item" data-page="meals"><i class="fas fa-calendar-week"></i><span class="nav-label">Meal Plans</span></div>
+      <div class="nav-item" data-page="explan"><i class="fas fa-clipboard-list"></i><span class="nav-label">Exercise Plan</span></div>
+      <div class="nav-item" data-page="recipes"><i class="fas fa-book-open"></i><span class="nav-label">Recipes</span></div>
+      <div class="nav-item" data-page="water"><i class="fas fa-droplet"></i><span class="nav-label">Water Intake</span></div>
+
+      <div class="nav-section">Body</div>
+      <div class="nav-item" data-page="weight"><i class="fas fa-weight-scale"></i><span class="nav-label">Weight &amp; BMI Tracking</span></div>
+
+      <div class="nav-section">Activity & Wellness</div>
+      <div class="nav-item" data-page="exlib"><i class="fas fa-list"></i><span class="nav-label">Exercise Library</span></div>
+      <div class="nav-item" data-page="sleep"><i class="fas fa-moon"></i><span class="nav-label">Sleep</span></div>
+
+      <div class="nav-section">Support</div>
+      <div class="nav-item" data-page="chat"><i class="fas fa-robot"></i><span class="nav-label">AI Assistant</span></div>
+      <div class="nav-item" data-page="coach"><i class="fas fa-user-doctor"></i><span class="nav-label">Doctor Chat</span></div>
+    </div>
+    <div class="sidebar-footer">
+      <button class="collapse-btn" onclick="toggleSidebar()">
+        <i class="fas fa-chevron-left" id="collapseIcon"></i>
+        <span class="collapse-btn-text">Collapse</span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- MAIN -->
+  <div class="main-area">
+    <!-- TOP BAR -->
+    <header class="topbar">
+      <div style="display:flex;gap:16px;align-items:center;padding-left:16px">
+         <button id="navBackBtn" onclick="goBack()" disabled style="background:transparent;border:none;color:var(--border);cursor:pointer;font-size:18px;transition:color 0.2s" title="Go Back"><i class="fas fa-arrow-left"></i></button>
+         <button id="navForwardBtn" onclick="goForward()" disabled style="background:transparent;border:none;color:var(--border);cursor:pointer;font-size:18px;transition:color 0.2s" title="Go Forward"><i class="fas fa-arrow-right"></i></button>
+      </div>
+      <div class="topbar-stats">
+        <div class="tstat"><div class="tstat-val" id="tb-cal" style="color:#C08F00">-- kcal</div><div class="tstat-lbl">consumed</div></div>
+        <div class="tstat"><div class="tstat-val" id="tb-water" style="color:var(--navy-light)">-- cups</div><div class="tstat-lbl">water</div></div>
+      </div>
+      
+      <div class="topbar-actions">
+        <div id="subBadge" class="badge" style="background:rgba(245,158,11,0.1);color:var(--orange);display:flex;align-items:center;gap:6px;cursor:pointer" onclick="openSubscriptionModal()">
+          <i class="fas fa-crown"></i> <span id="subText">Free</span>
+        </div>
+        
+        <div style="position:relative">
+          <button class="notif-btn" onclick="toggleNotifDropdown()"><i class="fas fa-bell"></i><div class="notif-dot hidden" id="notifDot"></div></button>
+          <div id="notifDropdown" class="hidden" style="position:absolute;top:100%;right:0;margin-top:8px;background:var(--card);border:1px solid var(--border);border-radius:var(--radius-sm);width:320px;z-index:100;box-shadow:0 4px 12px rgba(0,0,0,0.5);max-height:400px;overflow-y:auto;">
+            <div style="padding:12px 16px;border-bottom:1px solid var(--border);font-weight:700;display:flex;justify-content:space-between;align-items:center;">
+              <span>Notifications</span>
+              <div style="display:flex; gap:12px; align-items:center;">
+                <button onclick="markNotifsRead()" style="background:none;border:none;color:var(--red);font-size:12px;cursor:pointer">Clear all</button>
+                <button onclick="toggleNotifDropdown()" style="background:none;border:none;color:var(--sub);font-size:16px;cursor:pointer"><i class="fas fa-times"></i></button>
+              </div>
+            </div>
+            <div id="notifList">
+              <div style="padding:20px;text-align:center;color:var(--sub);font-size:13px">No notifications</div>
+            </div>
+          </div>
+        </div>
+
+        <div style="position:relative">
+          <button class="avatar-btn" onclick="document.getElementById('profileDropdown').classList.toggle('hidden')">
+            <div class="avatar" id="topAvatar">?</div>
+            <div class="user-info">
+              <div class="user-name" id="topName">Loading...</div>
+              <div class="user-role" id="topRole">Member</div>
+            </div>
+            <i class="fas fa-chevron-down" style="color:var(--sub);font-size:12px;margin-left:4px"></i>
+          </button>
+          <div id="profileDropdown" class="hidden" style="position:absolute;top:100%;right:0;margin-top:8px;background:var(--card);border:1px solid var(--border);border-radius:var(--radius-sm);width:200px;z-index:100;box-shadow:0 4px 12px rgba(0,0,0,0.5)">
+            <a href="#" onclick="openProfileModal(); document.getElementById('profileDropdown').classList.add('hidden')" style="display:block;padding:12px 16px;color:var(--text);text-decoration:none;border-bottom:1px solid var(--border)"><i class="fas fa-user-circle" style="width:20px"></i> My Profile</a>
+            <a href="#" onclick="showPage('goals'); document.getElementById('profileDropdown').classList.add('hidden')" style="display:block;padding:12px 16px;color:var(--text);text-decoration:none;border-bottom:1px solid var(--border)"><i class="fas fa-bullseye" style="width:20px"></i> Goals</a>
+            <a href="#" onclick="logout()" style="display:block;padding:12px 16px;color:var(--red);text-decoration:none"><i class="fas fa-sign-out-alt" style="width:20px"></i> Sign Out</a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- CONTENT -->
+    <main class="content" id="content">
+      <!-- pages are injected by JS -->
+    </main>
+  </div>
+</div>
+
+<!-- Modal container -->
+<div id="modalOverlay" class="modal-overlay hidden" onclick="closeModal(event)">
+  <div class="modal" id="modalBox" onclick="event.stopPropagation()">
+    <div id="modalContent"></div>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script>
+  // Dynamically load Socket.IO from the actual server host
+  (function() {
+    var host = window.location.hostname || 'localhost';
+    var s = document.createElement('script');
+    s.src = 'http://' + host + ':5000/socket.io/socket.io.js';
+    s.async = false; // synchronous load
+    document.write('<scr' + 'ipt src="' + s.src + '"></scr' + 'ipt>');
+  })();
+</script>
+<script src="js/api.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>

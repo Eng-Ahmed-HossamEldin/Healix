@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Healix - Choose Portal</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    body {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0;
+      padding: 48px 20px;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(101,205,69,0.2), transparent 28%),
+        radial-gradient(circle at bottom right, rgba(255,213,58,0.22), transparent 24%),
+        linear-gradient(180deg, #fcfdf7 0%, #f3f8e6 100%);
+    }
+    .landing-shell {
+      width: min(1080px, 100%);
+    }
+    .landing-hero {
+      text-align: center;
+      margin-bottom: 36px;
+    }
+    .landing-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: rgba(101,205,69,0.12);
+      color: var(--navy-light);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+    .landing-logo {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 22px;
+      margin-bottom: 18px;
+    }
+    .landing-mark {
+      width: 160px;
+      height: 160px;
+      padding: 0;
+      background: transparent;
+      border: none;
+      box-shadow: none;
+    }
+    .landing-mark img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
+    }
+    .landing-title {
+      font-size: clamp(34px, 6vw, 58px);
+      font-weight: 800;
+      line-height: 1;
+      letter-spacing: -0.04em;
+      color: var(--navy);
+    }
+    .landing-copy {
+      max-width: 640px;
+      margin: 0 auto;
+      font-size: 16px;
+      line-height: 1.6;
+      color: var(--sub);
+    }
+    .portal-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 20px;
+    }
+    .portal-card {
+      position: relative;
+      overflow: hidden;
+      background: rgba(255,255,255,0.84);
+      border: 1px solid rgba(25,39,95,0.12);
+      border-radius: 24px;
+      padding: 28px 24px;
+      text-decoration: none;
+      color: var(--text);
+      box-shadow: var(--shadow);
+      transition: transform 0.24s ease, box-shadow 0.24s ease, border-color 0.24s ease;
+    }
+    .portal-card::before {
+      content: "";
+      position: absolute;
+      inset: 0 0 auto;
+      height: 4px;
+      background: var(--accent);
+    }
+    .portal-card:hover {
+      transform: translateY(-6px);
+      border-color: var(--accent);
+      box-shadow: 0 24px 44px rgba(25,39,95,0.16);
+    }
+    .portal-card.member { --accent: var(--green); }
+    .portal-card.doctor { --accent: var(--navy-light); }
+    .portal-card.admin { --accent: var(--orange); }
+    .portal-kicker {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 14px;
+    }
+    .p-icon {
+      width: 64px;
+      height: 64px;
+      border-radius: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 26px;
+      margin-bottom: 18px;
+    }
+    .member .p-icon { background: rgba(101,205,69,0.14); color: var(--green); }
+    .doctor .p-icon { background: rgba(61,90,196,0.14); color: var(--navy-light); }
+    .admin .p-icon { background: rgba(255,213,58,0.24); color: #C08F00; }
+    .p-title {
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+    .p-desc {
+      font-size: 14px;
+      line-height: 1.6;
+      color: var(--sub);
+    }
+    @media (max-width: 900px) {
+      .portal-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    @media (max-width: 600px) {
+      body {
+        padding: 28px 16px;
+      }
+      .landing-mark {
+        width: 128px;
+        height: 128px;
+      }
+      .portal-card {
+        padding: 24px 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="landing-shell">
+    <div class="landing-hero">
+      <div class="landing-eyebrow">Wellness platform</div>
+      <div class="landing-logo">
+        <div class="landing-mark">
+          <img src="logo.jpeg" alt="Healix logo">
+        </div>
+        <div class="landing-title">Healix</div>
+      </div>
+      <p class="landing-copy">Choose the workspace that fits your role and continue inside a calmer, brighter product experience built around the Healix identity.</p>
+    </div>
+
+    <div class="portal-grid">
+      <a href="login.html" class="portal-card member">
+        <div class="portal-kicker">Member</div>
+        <div class="p-icon"><i class="fas fa-user"></i></div>
+        <div class="p-title">Member App</div>
+        <div class="p-desc">Track your fitness, log meals, and stay on top of personalized plans.</div>
+      </a>
+
+      <a href="doctor.html" class="portal-card doctor">
+        <div class="portal-kicker">Clinician</div>
+        <div class="p-icon"><i class="fas fa-stethoscope"></i></div>
+        <div class="p-title">Doctor Portal</div>
+        <div class="p-desc">Review patients, build routines, and manage care from one focused workspace.</div>
+      </a>
+
+      <a href="admin.html" class="portal-card admin">
+        <div class="portal-kicker">Operations</div>
+        <div class="p-icon"><i class="fas fa-shield-halved"></i></div>
+        <div class="p-title">Admin Dashboard</div>
+        <div class="p-desc">Monitor the platform, manage records, and keep the system running smoothly.</div>
+      </a>
+    </div>
+  </div>
+</body>
+</html>
